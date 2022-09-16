@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "BitBucket Syntax Highlighting",
+	"description": "Gives a bit of color to bitbucket diffs",
+	"version": "1.0",
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://bitbucket.org/*"],
+			"js": [
+				"prism.js",
+				"content-script.js"
+			],
+			"css": [
+				"prism.css"
+			]
+		}
+	],
+	"permissions": []
+}
