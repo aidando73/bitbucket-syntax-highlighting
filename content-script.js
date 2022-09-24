@@ -1,5 +1,14 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 
+runWhenUrlChanges(() => {
+    waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
+      allDiffsObserver.observe(diffSection, {
+        childList: true,
+        subtree: true,
+      });
+    });
+});
+
 const allDiffsObserver = new MutationObserver((mutations) => {
   mutations
     .filter((mutation) => mutation.type === "childList")
@@ -13,12 +22,23 @@ const allDiffsObserver = new MutationObserver((mutations) => {
     });
 });
 
-waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
-  allDiffsObserver.observe(diffSection, {
-    childList: true,
-    subtree: true,
+function highlightDiff(codeLine) {
+  // Try to get the extension of the file
+  const article = codeLine.closest('article[data-qa="pr-diff-file-styles"]');
+  const ariaAttribute = article.getAttribute("aria-label");
+
+  const extension = getExtension(ariaAttribute);
+
+  article.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
+    node.classList.add("language-java");
+    // node.classList.add("__rbb_syntax_highlight")
+    Prism.highlightElement(node);
   });
-});
+}
+
+function getExtension(filepath) {
+  return `.${filepath.slice(((filepath.lastIndexOf(".") - 1) >>> 0) + 2)}`;
+}
 
 function waitForElement(selector) {
   return new Promise((resolve) => {
@@ -40,20 +60,14 @@ function waitForElement(selector) {
   });
 }
 
-function highlightDiff(codeLine) {
-  // Try to get the extension of the file
-  const article = codeLine.closest('article[data-qa="pr-diff-file-styles"]');
-  const ariaAttribute = article.getAttribute("aria-label");
 
-  const extension = getExtension(ariaAttribute);
-
-  article.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
-    node.classList.add("language-java");
-    // node.classList.add("__rbb_syntax_highlight")
-    Prism.highlightElement(node);
-  });
-}
-
-function getExtension(filepath) {
-  return `.${filepath.slice(((filepath.lastIndexOf(".") - 1) >>> 0) + 2)}`;
+function runWhenUrlChanges(callback) {
+  let lastUrl = location.url;
+  new MutationObserver(() => {
+    const url = location.href;
+    if (url !== lastUrl) {
+      lastUrl = url;
+      callback();
+    }
+  }).observe(document, {subtree: true, childList: true});
 }
