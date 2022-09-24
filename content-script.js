@@ -1,19 +1,18 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 
 const allDiffsObserver = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    // Only act when new nodes are added
-    if (!(mutation.type === "childList" && mutation.addedNodes.length > 0)) {
-      continue;
-    }
-
-    // For each line in the diff block
-    mutation.target
-      .querySelectorAll(_allCodeLinesCssSelector)
-      .forEach((elem) => {
-        highlightDiff(elem);
-      });
-  }
+	mutations
+		.filter((mutation) => mutation.type === "childList")
+		.filter((mutation) => mutation.addedNodes.length > 0)
+		.forEach((mutation) => {
+			console.log(mutation)
+			// For each line in the diff block
+			mutation.target
+				.querySelectorAll(_allCodeLinesCssSelector)
+				.forEach((elem) => {
+					highlightDiff(elem);
+				});
+		})
 });
 
 waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
