@@ -5,8 +5,6 @@ const allDiffsObserver = new MutationObserver((mutations) => {
 		.filter((mutation) => mutation.type === "childList")
 		.filter((mutation) => mutation.addedNodes.length > 0)
 		.forEach((mutation) => {
-			console.log(mutation)
-			// For each line in the diff block
 			mutation.target
 				.querySelectorAll(_allCodeLinesCssSelector)
 				.forEach((elem) => {
