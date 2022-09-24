@@ -43,7 +43,6 @@ function waitForElement(selector) {
 }
 
 function highlightDiff(codeLine) {
-  console.log(codeLine);
   // Try to get the extension of the file
   const article = codeLine.closest('article[data-qa="pr-diff-file-styles"]');
   const ariaAttribute = article.getAttribute("aria-label");
