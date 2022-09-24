@@ -55,10 +55,9 @@ function highlightDiff(codeLine) {
 
 	const extension = getExtension(ariaAttribute);
 
-	const nodes = article.querySelectorAll(
-		"[data-qa=code-line] pre > span:last-child"
-	);
-	nodes.forEach((node) => {
+	article
+	.querySelectorAll(_allCodeLinesCssSelector)
+	.forEach((node) => {
 		node.classList.add("language-java");
 		// node.classList.add("__rbb_syntax_highlight")
 		Prism.highlightElement(node);
