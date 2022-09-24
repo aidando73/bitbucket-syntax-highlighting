@@ -1,16 +1,16 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 
 const allDiffsObserver = new MutationObserver((mutations) => {
-	mutations
-		.filter((mutation) => mutation.type === "childList")
-		.filter((mutation) => mutation.addedNodes.length > 0)
-		.forEach((mutation) => {
-			mutation.target
-				.querySelectorAll(_allCodeLinesCssSelector)
-				.forEach((elem) => {
-					highlightDiff(elem);
-				});
-		})
+  mutations
+    .filter((mutation) => mutation.type === "childList")
+    .filter((mutation) => mutation.addedNodes.length > 0)
+    .forEach((mutation) => {
+      mutation.target
+        .querySelectorAll(_allCodeLinesCssSelector)
+        .forEach((elem) => {
+          highlightDiff(elem);
+        });
+    });
 });
 
 waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
