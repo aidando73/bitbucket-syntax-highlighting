@@ -1,12 +1,12 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 
 runWhenUrlChanges(() => {
-    waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
-      allDiffsObserver.observe(diffSection, {
-        childList: true,
-        subtree: true,
-      });
+  waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
+    allDiffsObserver.observe(diffSection, {
+      childList: true,
+      subtree: true,
     });
+  });
 });
 
 const allDiffsObserver = new MutationObserver((mutations) => {
@@ -60,7 +60,6 @@ function waitForElement(selector) {
   });
 }
 
-
 function runWhenUrlChanges(callback) {
   let lastUrl = location.url;
   new MutationObserver(() => {
@@ -69,5 +68,5 @@ function runWhenUrlChanges(callback) {
       lastUrl = url;
       callback();
     }
-  }).observe(document, {subtree: true, childList: true});
+  }).observe(document, { subtree: true, childList: true });
 }
