@@ -56,10 +56,6 @@ pre[class*="language-"] {
   overflow: auto;
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-}
-
 /* Inline code */
 :not(pre) > code[class*="language-"] {
   padding: 0.1em;
