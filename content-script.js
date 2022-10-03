@@ -1,4 +1,5 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
+const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
 runWhenUrlChanges(() => {
   waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
@@ -14,30 +15,18 @@ const allDiffsObserver = new MutationObserver((mutations) => {
     .filter((mutation) => mutation.type === "childList")
     .filter((mutation) => mutation.addedNodes.length > 0)
     .forEach((mutation) => {
-      mutation.target
-        .querySelectorAll(_allCodeLinesCssSelector)
-        .forEach((elem) => {
-          highlightDiff(elem);
-        });
+      const diffFile = mutation.target.querySelector(_diffFileSelector);
+      if (diffFile !== null) {
+        highlightDiffFile(diffFile);
+      }
     });
 });
 
-function highlightDiff(codeLine) {
-  // Try to get the extension of the file
-  const article = codeLine.closest('article[data-qa="pr-diff-file-styles"]');
-  const ariaAttribute = article.getAttribute("aria-label");
-
-  const extension = getExtension(ariaAttribute);
-
-  article.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
+function highlightDiffFile(diffFile) {
+  diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
     node.classList.add("language-java");
-    // node.classList.add("__rbb_syntax_highlight")
     Prism.highlightElement(node);
   });
-}
-
-function getExtension(filepath) {
-  return `.${filepath.slice(((filepath.lastIndexOf(".") - 1) >>> 0) + 2)}`;
 }
 
 function waitForElement(selector) {
