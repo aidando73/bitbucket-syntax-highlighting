@@ -1,10 +1,9 @@
 {
 	"manifest_version": 2,
-	"name": "BitBucket Syntax Highlighting",
-	"description": "Gives a bit of color to bitbucket diffs",
+	"name": "Bitbucket Syntax Highlighting",
+	"description": "Syntax highlighting for Bitbucket pull request diffs",
 	"version": "1.0",
 	"browser_action": {
-		"default_popup": "popup.html"
 	},
 	"content_scripts": [
 		{
