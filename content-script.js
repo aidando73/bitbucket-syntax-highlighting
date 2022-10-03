@@ -23,9 +23,14 @@ const allDiffsObserver = new MutationObserver((mutations) => {
 });
 
 function highlightDiffFile(diffFile) {
-  diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
-    node.classList.add("language-java");
-    Prism.highlightElement(node);
+  const fileExtension = diffFile
+      .getAttribute('aria-label')
+      .split('\.')
+      .at(-1);
+
+  diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((codeLine) => {
+    codeLine.classList.add(`language-${fileExtension}`);
+    Prism.highlightElement(codeLine);
   });
 }
 
