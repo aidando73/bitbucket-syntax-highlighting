@@ -17,12 +17,12 @@ const allDiffsObserver = new MutationObserver((mutations) => {
     .forEach((mutation) => {
       const diffFile = mutation.target.querySelector(_diffFileSelector);
       if (diffFile !== null) {
-        highlightDiff(diffFile);
+        highlightDiffFile(diffFile);
       }
     });
 });
 
-function highlightDiff(diffFile) {
+function highlightDiffFile(diffFile) {
   diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
     node.classList.add("language-java");
     Prism.highlightElement(node);
