@@ -1,5 +1,5 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
-const _allPrDiffCodeBlocks = "article[data-qa=pr-diff-file-styles]";
+const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
 runWhenUrlChanges(() => {
   waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
@@ -15,15 +15,15 @@ const allDiffsObserver = new MutationObserver((mutations) => {
     .filter((mutation) => mutation.type === "childList")
     .filter((mutation) => mutation.addedNodes.length > 0)
     .forEach((mutation) => {
-      const prCodeBlock = mutation.target.querySelector(_allPrDiffCodeBlocks);
-      if (prCodeBlock !== null) {
-        highlightDiff(prCodeBlock);
+      const diffFile = mutation.target.querySelector(_diffFileSelector);
+      if (diffFile !== null) {
+        highlightDiff(diffFile);
       }
     });
 });
 
-function highlightDiff(prDiffCodeBlock) {
-  prDiffCodeBlock.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
+function highlightDiff(diffFile) {
+  diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((node) => {
     node.classList.add("language-java");
     Prism.highlightElement(node);
   });
