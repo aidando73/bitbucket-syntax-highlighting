@@ -2,7 +2,9 @@ const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
 runWhenUrlChanges(() => {
-  waitForElement('section[aria-label="Diffs"]').then((diffSection) => {
+  // "#pull-request-details" is used instead of "section[aria-label="Diffs"]" because the latter
+  // is replaced with a new element when the PR is updated (e.g. when a new change is pushed and user refreshes).
+  waitForElement('#pull-request-details').then((diffSection) => {
     allDiffsObserver.observe(diffSection, {
       childList: true,
       subtree: true,
