@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "jest-environment-jsdom": "^29.1.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "./static/wait-for-element.js"
+    ],
+    "testEnvironment": "jsdom"
+  }
+}

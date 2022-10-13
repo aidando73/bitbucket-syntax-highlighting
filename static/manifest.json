@@ -10,6 +10,7 @@
 		{
 			"matches": ["https://bitbucket.org/*"],
 			"js": [
+				"wait-for-element.js",
 				"prism.js",
 				"content-script.js"
 			],
