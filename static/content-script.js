@@ -2,14 +2,17 @@ const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
 runWhenUrlChanges(() => {
-  // "#pull-request-details" is used instead of "section[aria-label="Diffs"]" because the latter
-  // is replaced with a new element when the PR is updated (e.g. when a new change is pushed and user refreshes).
-  waitForElement('#pull-request-details').then((diffSection) => {
-    allDiffsObserver.observe(diffSection, {
-      childList: true,
-      subtree: true,
+  const url = location.href;
+  if (url.match(/https:\/\/bitbucket.org\/.+\/.+\/pull-requests\/.+/)) {
+    // "#pull-request-details" is used instead of "section[aria-label="Diffs"]" because the latter
+    // is replaced with a new element when the PR is updated (e.g. when a new change is pushed and user refreshes).
+    waitForElement('#pull-request-details').then((diffSection) => {
+      allDiffsObserver.observe(diffSection, {
+        childList: true,
+        subtree: true,
+      });
     });
-  });
+  }
 });
 
 const allDiffsObserver = new MutationObserver((mutations) => {
