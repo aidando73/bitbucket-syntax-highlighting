@@ -20,7 +20,7 @@ const allDiffsObserver = new MutationObserver((mutations) => {
   mutations
     .forEach((mutation) => {
       // On a regular PR, highlight the diff when it is added to the DOM.
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0 && mutation.addedNodes[0]?.getAttribute('data-qa') === 'pr-diff-file-styles') {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0 && mutation.addedNodes[0]?.getAttribute?.('data-qa') === 'pr-diff-file-styles') {
         highlightDiffFile(mutation.addedNodes[0]);
         return;
       }
@@ -31,7 +31,7 @@ const allDiffsObserver = new MutationObserver((mutations) => {
 
       // On a large PR, highlight the first diff.
       // The first diff appears when the 'section[aria-label="Diffs"]' element is added.
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0 && mutation.addedNodes[0]?.getAttribute('aria-label') === 'Diffs') {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0 && mutation.addedNodes[0]?.getAttribute?.('aria-label') === 'Diffs') {
         highlightDiffFile(mutation.addedNodes[0].querySelector(_diffFileSelector));
         return;
       }
