@@ -4,3 +4,6 @@ This is a temporary testing strategy for the tests until a more automated soluti
 - Go onto a PR and check if most things are highlighted
 - Open up bitbucket.org and travel to the PRs and check if they're highlighted
 - Push a change to a PR and reload the page and check if they're still highlighted
+- Go to a large PR and check if the highlighting is still working.
+  - Check that highlighting still works when changing files
+  - Check that highlighting still works when changing from an image diff to a code diff.

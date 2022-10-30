@@ -12,7 +12,7 @@
 			"js": [
 				"wait-for-element.js",
 				"prism.js",
-				"content-script.js"
+				"main.js"
 			],
 			"css": [
 				"prism.css"
