@@ -20,14 +20,13 @@ const allDiffsObserver = new MutationObserver((mutations) => {
   mutations
     .forEach((mutation) => {
       // On a regular PR, highlight the diff when it is added to the DOM.
+      // This also highlights the diff when moving from an image diff to a code diff in a large PR.
+      // When moving from an image diff to a code diff, the "article[data-qa=pr-diff-file-styles]" element is added.
+      // (it is removed when moving from a code diff to an image diff)
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0 && mutation.addedNodes[0]?.getAttribute?.('data-qa') === 'pr-diff-file-styles') {
         highlightDiffFile(mutation.addedNodes[0]);
         return;
       }
-      // The above statement also captures, the following scenario:
-      // On a large PR, highlight the diff when moving from an image diff to a code diff.
-      // When moving from an image diff to a code diff, the "article[data-qa=pr-diff-file-styles]" element is added.
-      // (it is removed when moving from a code diff to an image diff)
 
       // On a large PR, highlight the first diff.
       // The first diff appears when the 'section[aria-label="Diffs"]' element is added.
