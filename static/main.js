@@ -28,6 +28,7 @@ runWhenUrlChanges(() => {
 });
 
 const allDiffsObserver = new MutationObserver((mutations) => {
+  const diffFilesToHighlight = new Set();
   mutations
     .forEach((mutation) => {
       // On a regular PR, highlight the diff when it is added to the DOM.
@@ -54,7 +55,16 @@ const allDiffsObserver = new MutationObserver((mutations) => {
         highlightDiffFile(mutation.target);
         return;
       }
+
+      // When a user tries to show more lines in a diff, the div.diff-chunk-inner element mutation fires (a childlist mutation).
+      if (mutation.type === 'childList' && mutation.target.classList.contains('diff-chunk-inner')) {
+        diffFilesToHighlight.add(mutation.target.closest(_diffFileSelector));
+        return;
+      }
     });
+
+    // This makes it pretty slow...
+    diffFilesToHighlight.forEach((diffFile) => highlightDiffFile(diffFile));
 });
 
 function highlightDiffFile(diffFile) {
