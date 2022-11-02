@@ -7,6 +7,9 @@ const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 // .tf -> hcl
 const extensionToPrismLanguageMap = new Map([
     ['tf', 'hcl'],
+
+    // Common files
+    ['Vagrantfile', 'ruby'],
 ])
 
 runWhenUrlChanges(() => {
@@ -55,11 +58,25 @@ const allDiffsObserver = new MutationObserver((mutations) => {
 });
 
 function highlightDiffFile(diffFile) {
-  const fileExtension = diffFile
+  // The aria-label attribute contains the file name, with additional text. E.g.
+  // aria-label="Diff of file src/main/java/com/example/Example.java"
+  // We only want the file extension
+  // Remove the "Diff of file " prefix
+  const filePath = diffFile
       .getAttribute('aria-label')
-      .split('\.')
-      .at(-1);
+      .replace(/^Diff of file /, '')
 
+  const fileName = filePath.split('/').at(-1);
+  // Some files don't have an extension, e.g. Makefile, Vagrantfile
+  // In this case, we use the file name as the extension.
+  const fileExtension = (fileName.includes("."))
+      ? fileName.split('.').at(-1)
+      : fileName;
+
+// Some extensions map well to Prism languages, others don't. e.g.
+// .java -> java, .json -> json
+// vs
+// .tf -> hcl
   const prismLanguage = extensionToPrismLanguageMap.get(fileExtension) ?? fileExtension;
 
   diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((codeLine) => {
