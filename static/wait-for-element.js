@@ -18,5 +18,7 @@ function waitForElement(selector) {
     });
 }
 
-// This is to allow for testing
-global.waitForElement = waitForElement;
+// This is to allow for jest testing (The JEST_WORKER_ID is set by jest)
+if (!isContentScript && process?.env?.JEST_WORKER_ID !== undefined) {
+    global.waitForElement = waitForElement;
+}
