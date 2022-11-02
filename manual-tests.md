@@ -13,3 +13,6 @@ This is a temporary testing strategy for the tests until a more automated soluti
 - Push a change to a PR and reload the page and check if they're still highlighted
 - Go to a PR with comments and sort by recent comments. Check if the highlighting is still working.
 - Find a PR with a renamed file and check if the highlighting is still working.
+
+### Super Slow Tests
+- Go on firefox and test the above steps
