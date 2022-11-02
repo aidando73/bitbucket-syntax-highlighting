@@ -1,8 +1,12 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
+// Some extensions map well to Prism languages, others don't. e.g.
+// .java -> java, .json -> json
+// vs
+// .tf -> hcl
 const extensionToPrismLanguageMap = new Map([
-    ['tf', 'hcl']
+    ['tf', 'hcl'],
 ])
 
 runWhenUrlChanges(() => {
