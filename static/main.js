@@ -1,6 +1,10 @@
 const _allCodeLinesCssSelector = "[data-qa=code-line] pre > span:last-child";
 const _diffFileSelector = "article[data-qa=pr-diff-file-styles]";
 
+const extensionToPrismLanguageMap = new Map([
+    ['tf', 'hcl']
+])
+
 runWhenUrlChanges(() => {
   const url = location.href;
   if (url.match(/https:\/\/bitbucket.org\/.+\/.+\/pull-requests\/.+/)) {
@@ -52,8 +56,10 @@ function highlightDiffFile(diffFile) {
       .split('\.')
       .at(-1);
 
+  const prismLanguage = extensionToPrismLanguageMap.get(fileExtension) ?? fileExtension;
+
   diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((codeLine) => {
-    codeLine.classList.add(`language-${fileExtension}`);
+    codeLine.classList.add(`language-${prismLanguage}`);
     Prism.highlightElement(codeLine);
   });
 }
