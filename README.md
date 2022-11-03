@@ -9,16 +9,17 @@ Several users have requested this [feature](https://jira.atlassian.com/browse/BC
 It is unlikely that Bitbucket will implement this feature, and thus this extension was created.
 
 Syntax highlighting is not just for cosmetics, it's significantly easier to read code when it's highlighted.
-Suppose you were tasked with reviewing this file:
+
+🙁 Before:
 
 ![Before](./design/vagrantfile-non-highlighted.png)
 
-The same file is much easier to read when it's highlighted:
+😄 After:
 
 ![After](./design/vagrantfile-highlighted.png)
 
 The latter is easier to review, as there is separation between comments, variables, constants, functions, classes, keywords, etc.
-This extension will:
+Therefore, this extension will:
 
 - ✅ Decrease the cognitive load of reviewing code
 - ✅ Decrease the time it takes to review a pull request
