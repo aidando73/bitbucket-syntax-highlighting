@@ -10,6 +10,7 @@ const extensionToPrismLanguageMap = new Map([
 
     // Common files
     ['Vagrantfile', 'ruby'],
+    ['vue', 'html'],
 ])
 
 runWhenUrlChanges(() => {
