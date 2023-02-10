@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 Green='\033[0;32m'
 Color_Off='\033[0m'
 
@@ -20,6 +21,10 @@ cd "$script_dir"/dist || exit
 cp -r "$script_dir"/static "$script_dir"/dist/chrome
 cd "$script_dir"/dist/chrome || exit
 # Set manifest version to 3 using macos sed
-sed -i '' 's/"manifest_version": 2/"manifest_version": 3/' manifest.json
+if [ "$OSTYPE" = 'darwin'* ]; then
+    sed -i '' 's/"manifest_version": 2/"manifest_version": 3/' manifest.json
+else
+    sed -i -e 's/"manifest_version": 2/"manifest_version": 3/'  manifest.json
+fi
 zip -r "$script_dir"/dist/chrome.zip ./*
 echo "${Green}Packaged for chrome under dist/chrome.zip${Color_Off}"
