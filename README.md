@@ -39,7 +39,7 @@ The extensions can be found:
 See the full list of supported languages
 [here](https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+aspnet+bash+c+csharp+go+gradle+hcl+java+json+markdown+markup-templating+objectivec+php+powershell+python+jsx+tsx+ruby+sql+typescript+visual-basic+yaml&plugins=keep-markup).
 
-Syntax highlighting is done in a best effort manner using the file extension or file name. If there is a language missing or file that isn't highlighted, [please let me know](https://github.com/refined-bitbucket/refined-bitbucket/issues/new) or submit a PR.
+Syntax highlighting is done in a best effort manner using the file extension or file name. If there is a language missing or file that isn't highlighted, [please let me know](https://github.com/REslim30/bitbucket-syntax-highlighting/issues/new) or submit a PR.
 
 ## Credits
 - Kudos to the team at [Prism.js](https://prismjs.com/), for their amazing work on the syntax highlighting library we use.
