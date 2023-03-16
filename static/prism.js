@@ -8,7 +8,7 @@ var _self =
       ? self
       : {},
   Prism = (function (e) {
-    var n = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,
+    var n = /(?:^|\s)bb-syntax-highlighter-([\w-]+)(?=\s|$)/i,
       t = 0,
       r = {},
       a = {
@@ -68,7 +68,7 @@ var _self =
           },
           setLanguage: function (e, t) {
             (e.className = e.className.replace(RegExp(n, "gi"), "")),
-              e.classList.add("language-" + t);
+              e.classList.add("bb-syntax-highlighter-" + t);
           },
           currentScript: function () {
             if ("undefined" == typeof document) return null;
@@ -146,7 +146,7 @@ var _self =
             callback: t,
             container: e,
             selector:
-              'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+              'code[class*="bb-syntax-highlighter-"], [class*="bb-syntax-highlighter-"] code, code[class*="lang-"], [class*="lang-"] code',
           };
           a.hooks.run("before-highlightall", r),
             (r.elements = Array.prototype.slice.apply(
@@ -484,7 +484,7 @@ var _self =
   Object.defineProperty(Prism.languages.markup.tag, "addInlined", {
     value: function (a, e) {
       var s = {};
-      (s["language-" + e] = {
+      (s["bb-syntax-highlighter-" + e] = {
         pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
         lookbehind: !0,
         inside: Prism.languages[e],
@@ -493,7 +493,10 @@ var _self =
       var t = {
         "included-cdata": { pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i, inside: s },
       };
-      t["language-" + e] = { pattern: /[\s\S]+/, inside: Prism.languages[e] };
+      t["bb-syntax-highlighter-" + e] = {
+        pattern: /[\s\S]+/,
+        inside: Prism.languages[e],
+      };
       var n = {};
       (n[a] = {
         pattern: RegExp(
@@ -530,7 +533,7 @@ var _self =
               value: {
                 pattern: /(^=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,
                 lookbehind: !0,
-                alias: [e, "language-" + e],
+                alias: [e, "bb-syntax-highlighter--highlighter-" + e],
                 inside: Prism.languages[e],
               },
               punctuation: [{ pattern: /^=/, alias: "attr-equals" }, /"|'/],
@@ -668,7 +671,7 @@ Prism.languages.clike = {
         "regex-source": {
           pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
           lookbehind: !0,
-          alias: "language-regex",
+          alias: "bb-syntax-highlighter-regex",
           inside: Prism.languages.regex,
         },
         "regex-delimiter": /^\/|\/$/,
@@ -974,7 +977,7 @@ Prism.languages.clike = {
           punctuation: /^\{|\}$/,
           expression: {
             pattern: /[\s\S]+/,
-            alias: "language-csharp",
+            alias: "bb-syntax-highlighter-csharp",
             inside: e.languages.csharp,
           },
         },
@@ -1580,7 +1583,7 @@ Prism.languages.hcl = {
           punctuation: /^---|---$/,
           "front-matter": {
             pattern: /\S+(?:\s+\S+)*/,
-            alias: ["yaml", "language-yaml"],
+            alias: ["yaml", "bb-syntax-highlighter-yaml"],
             inside: n.languages.yaml,
           },
         },
@@ -1763,7 +1766,7 @@ Prism.languages.hcl = {
                       .replace(/\b#/g, "sharp")
                       .replace(/\b\+\+/g, "pp"),
                     s =
-                      "language-" +
+                      "bb-syntax-highlighter-" +
                       (l = (/[a-z][\w-]*/i.exec(l) || [""])[0].toLowerCase());
                   o.alias
                     ? "string" == typeof o.alias
@@ -1779,7 +1782,7 @@ Prism.languages.hcl = {
       if ("code-block" === e.type) {
         for (var t = "", a = 0, i = e.classes.length; a < i; a++) {
           var s = e.classes[a],
-            d = /language-(.+)/.exec(s);
+            d = /bb-syntax-highlighter-(.+)/.exec(s);
           if (d) {
             t = d[1];
             break;
@@ -1866,7 +1869,7 @@ Prism.languages.hcl = {
                     d = new e.Token(
                       a,
                       e.tokenize(s, t.grammar),
-                      "language-" + a,
+                      "bb-syntax-highlighter--highlighter-" + a,
                       s
                     ),
                     h = f.substring(k + p.length),
@@ -2304,7 +2307,7 @@ Prism.languages.hcl = {
       {
         script: {
           pattern: a("=<BRACES>"),
-          alias: "language-javascript",
+          alias: "bb-syntax-highlighter-javascript",
           inside: {
             "script-punctuation": { pattern: /^=(?=\{)/, alias: "punctuation" },
             rest: t.languages.jsx,

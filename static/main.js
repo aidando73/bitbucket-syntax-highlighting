@@ -79,9 +79,8 @@ function highlightDiffFile(diffFile) {
 // vs
 // .tf -> hcl
   const prismLanguage = extensionToPrismLanguageMap.get(fileExtension) ?? fileExtension;
-
   diffFile.querySelectorAll(_allCodeLinesCssSelector).forEach((codeLine) => {
-    codeLine.classList.add(`language-${prismLanguage}`);
+    codeLine.classList.add(`bb-syntax-highlighter-${prismLanguage}`);
     Prism.highlightElement(codeLine);
   });
 }
