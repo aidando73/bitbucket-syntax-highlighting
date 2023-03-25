@@ -4,9 +4,10 @@ A browser extension to add syntax highlighting to your pull requests on Bitbucke
 
 ![Example Screenshot](./design/example-screenshot.png)
 
-Syntax highlighting is not supported natively in Bitbucket.
-Several users have requested this [feature](https://jira.atlassian.com/browse/BCLOUD-3049), but it has not been implemented yet and the issue is closed.
-It is unlikely that Bitbucket will implement this feature, and thus this extension was created.
+## ℹ Update [25 Mar 2023]
+Several users have requested this [feature](https://jira.atlassian.com/browse/BCLOUD-8673) since 2013, and finally BitBucket has announced a [beta version of syntax highlighting](https://community.atlassian.com/t5/Bitbucket-articles/New-in-Bitbucket-Labs-Syntax-highlighting-on-pull-requests/ba-p/2307424) meaning they've decided to support syntax highlighting natively. This means this extension is no longer required. Thank you to [@PhenX](https://github.com/PhenX) for your contributions and all of our users. We were able to hit 150 users at the peak of it all (130 on chrome, 20 on firefox).
+
+## Why Bother?
 
 Syntax highlighting is not just for cosmetics, it's significantly easier to read code when it's highlighted.
 
