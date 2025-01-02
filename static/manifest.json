@@ -24,6 +24,9 @@
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "bitbucket-syntax-highlighting@aidando.dev"
+		},
+		"safari": {
+			"bundle_id": "com.aidando.bitbucket-syntax-highlighting"
 		}
 	}
 }
