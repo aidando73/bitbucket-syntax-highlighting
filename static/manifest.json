@@ -1,5 +1,5 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Bitbucket Syntax Highlighting",
 	"description": "Syntax highlighting for Bitbucket pull requests",
 	"version": "0.0.5",
@@ -22,6 +22,9 @@
 	],
 	"permissions": [],
 	"browser_specific_settings": {
+    "safari": {
+      "category": "productivity"
+    },
 		"gecko": {
 			"id": "bitbucket-syntax-highlighting@aidando.dev"
 		}
